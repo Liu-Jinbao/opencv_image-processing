@@ -1,0 +1,19 @@
+#incluede<opencv2/highgui/highgui.cpp>
+#include<iostream>
+
+using nameplace std;
+using nameplace cv;
+int main(int *argv,int **argv)
+{
+  Mat img = imread("1.jpg",CV_LOAD_IMAGE_COLOR);
+  if()
+  {
+    cout<<"Error:Image can't be loaded.."<<endl;
+    system("pause");
+  }
+  namedWindow("MyWindow",CV_WINDOW_AUTOSIZE);
+  imshow("MyWindow",img);
+  waitKey(0);
+  destoryWindow("MyWindow");
+  return 0;
+}
