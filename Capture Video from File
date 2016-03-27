@@ -1,0 +1,38 @@
+//#include<stdafx.h>
+#include<opencv2/highgui/highgui.hpp>
+#include<iostream>
+
+using namespce std;
+using namespace cv;
+ 
+int main(int argc,char*argv[])
+{
+  VideoCapture cap("C/Users/.../1.avi");
+  if(!cap.isOpened())
+  {
+    cout<<"Cannot open the vvideo file"<<endl;
+    system("pause");
+    return -1;
+  }
+  cap.set(CV_CAP_PROP_POS_MSEC,300);
+  double fps = cap.get(CV_CAP_PROP_FPS);
+  cout<<"Frame per second:"<<fps<<endl;
+  namedWindow("MyVideo",CV_WINDOW_AUTOSIZE);
+  while(1)
+  {
+    Mat frame;
+    bool success=cap.read(frame);
+    if(!success)
+    {
+      cout<<"Cannot read the frame from the video.."<<endl;
+      system("pause");
+      return -1;
+      //break;
+    }
+    imshow("MyVideo",frame);
+    if(waitKey(30)==27)
+    break;
+    return 0;
+  }
+  
+}
