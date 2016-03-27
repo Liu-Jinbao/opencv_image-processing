@@ -1,0 +1,19 @@
+#include<opencv2/highgui/highgui.hpp>
+#include<iostream>
+
+using namespace std;
+using namespace cv;
+int main(int argv, const char**argv)
+{
+  Mat img = (500,1000,CV8U_C3,Scalar(0,0,100));
+  if(img.empty())
+  {
+    cout<<"Error:Image cant't be loaded.."<<endl;
+    return -1;
+  }
+  namedWindow("MyWindow",CV_WINDOW_AUTOSIZE);
+  imread("MyWindow",img);
+  waitKey(0);
+  destroyWindow("MyWindow");
+  return 0;
+}
