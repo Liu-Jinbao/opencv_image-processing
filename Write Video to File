@@ -1,0 +1,44 @@
+#include<opencv2/highgui/highgui.hpp>
+#include<iostream>
+
+using namespace std;
+using namespace cv;
+
+int main(int argc, char* argv)
+{
+  VideoCapture cap(0);
+  if(cap.empty())
+  {
+    cout<<"Cannot open the camare.."<<endl;
+    return -1;
+  }
+  namedWindow("MyVideo",CV_WINDOW_AUTOSIZE);
+  
+  double dheight = cap.get(CV_CAP_FRAME_HEIGHT);
+  double dwidth = cap.get(CV_CAP_FRAME_WIDTH);
+  cout<<"Frame Size:"<<dheight<<"x"<<dwidth<<endl;
+  
+  Size FrameSize(static_cast<int>(dheight),static_cast<int>(dwidth));
+  VideoWriter oVideoWriter("H/MyVideo.avi",CV_FOURCC('P','I','M','1'),20,FrameSize,true);
+  if(!oVideoWriter.isOpen())
+  {
+    cout<<"Failed to write the video.."<<endl;
+    return -1;
+  }
+  while(1)
+  {
+    Mat frame;
+    bool success = cap.read(frame);
+    if(!success)
+    {
+     cout<<"Cannot read the video.."<<endl;
+     return -1;
+    }
+    oWriterVideo.write(frame)
+    imshow("MyVideo",frame);
+    if(waitKey(30)==27)
+    break;
+    return 0;
+    
+  }
+}
