@@ -1,0 +1,12 @@
+Change Brightness of Image or Video
+Change Contrast of Image or Video
+Histogram Equalization of Grayscale or Color Image
+Smooth /Blur Images
+
+Eroding
+cvErode(img,img,0,2)
+Dilating
+cvDilating(img,img,0,2)
+Inverting
+cvNot(img,img)  // For a 8 bit image, the value 0 will be mapped to (255-0)=255
+                                      the value 46 will be mapped to (255-46)=209
