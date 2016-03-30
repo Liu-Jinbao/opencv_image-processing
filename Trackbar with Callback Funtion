@@ -1,0 +1,46 @@
+#include<opencv2/highgui/highgui.hpp>
+#include<opencv2/imgproc/imgproc.hpp>
+#include<iostream>
+using namespace std;
+using namespace cv;
+
+Mat src;
+
+void MyCallbackForBrightness(int iValueForBrightness,void*userData)
+{
+  Mat dst;
+  int iValueForContrast = *(static_cast<int*>(userData));
+  int iBrightness = iValueForBrightness - 50;
+  int dContrast = iValueForContrast / 50;
+  cout<<"MyCallbackForBrightness:Contrast="<<dContrast<<",Brightness="<<iBrightness<<endl;
+  src.convertTo(dst,-1,iBrightness,dContrast);
+  imshow("MyWindow",dst);
+}
+void MyCallbackForContrast(int iValueForContrast,void*userData)
+{
+  Mat dst;
+  int iValueForBrightness = *(satic_cast<int>(userData));
+  int iBrightness = iValueForBrightness - 50;
+  int dContrast = iValueForContrast / 50;
+  cout<<"MyCallbackForContrast: Contrast="<<dContrast<<",Brightness="<<iBrightness<<endl;
+  src.convertTo(dst,-1,iBrightness,dContrast);
+  imshow("MyWindow",dst);
+}
+
+int main(int argc,const char** argv)
+{
+  Mat src = imread("1.jpg");
+  if(!src.data())
+  {
+    cout<<"Image can't be loaded.."<<endl;
+    return -1;
+  }
+  namedWindow("MyWindow",1);
+  int iValueForBrightness = 50;
+  int iValueForContrast = 50;
+  create Trackbar("Brightness","MyWindow",&iValueBrightness,100,MyCallbackForBrightness,&iValueForContrast);
+  create Trackbar("Contract","MyWindow",&iVlaueContract,100,MyCallbackForContrct,&iValueForBrightness);
+  imshow("MyWindow",src);
+  waitKey(0);
+  return 0;
+}
