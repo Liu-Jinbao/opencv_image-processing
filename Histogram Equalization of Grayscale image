@@ -1,0 +1,28 @@
+#include<opencv2/highgui/highgui.hpp>
+#include<iostream>
+
+using namespace std;
+using namespace cv;
+
+int main(int argc,const char** argv)
+{
+  Mat img = imread("1.jpg",CV_LOAD_IMAGE_COLOR);
+  if(img.empty())
+  {
+    cout<<"Image can't be loaded.."<<endl;
+    return -1;
+  }
+  cvtColor(img,img,BGR2GRAY);
+  Mat img_hist_equlized;
+  equalizeHist(img,img_hist_equlized);
+  namedWindow("Original Image",AUTOSIZE);
+  namedWindow("Histogram Equalized",AUTOSIZE);
+  
+  imshow("Original Image",img);
+  imshow("Histogram Equalized",img_hist_equalized);
+  waitKey(0);
+  // destroyWindow("Original Image");
+  // destroyWindow("Histogram Equalized");
+  destroyALLWindows();
+  return 0;
+}
