@@ -1,0 +1,33 @@
+#include<opencv2/highgui/highgui.hpp>
+#include<opencv2/imgproc/imgproc.hpp>
+#include<iostream>
+using namespace std;
+using namespace cv;
+int main(int argc,char** argv)
+{
+  Mat src = imread("1.jpg");
+  if(!src.data)
+  {
+    cout<<"Image can't be loaded.."<<endl;
+    return -1;
+  }
+  namedWindow("MyWindow",1);
+  int iSliverValue1 = 50;
+  create Trackbar("Brightness","MyWindow",&iSliverValue1,100);
+  int iSliverWindow2 = 50;
+  create Trackbar("Contrast","MyWindow",&iSliverbar2,100);
+  while(true)
+  {
+    Mat dst;
+    int iBrightness = iSliverValue1 - 50;
+    int dContrast = iSliverValue2 / 50;
+    src.convertTo(dst,-1,dContrast,iBrightness);
+    imshow("MyWindow",dst);
+    int Key = waitKey(50);
+    if(Key==27)
+    {
+      break;
+    }
+    return 0;
+  }
+}
